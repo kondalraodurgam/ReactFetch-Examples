@@ -1,15 +1,12 @@
 import React, {useState,useEffect} from 'react'
+import axios from 'axios';
 
 function App(){
 	const [users,  setUser] = useState([]);
 	useEffect(()=>{
-		fetch('https://jsonplaceholder.typicode.com/users')
-		.then((result)=>result.json())
-		.then((data)=>{
-			console.log("users",data)
-			setUser(data)
-		}).catch((err)=>{
-			console.log("error feting userData",err);
+		axios.get('https://jsonplaceholder.typicode.com/users')
+		.then((result)=>{
+			setUser(result.data)
 		})
 	},[])
   return (
